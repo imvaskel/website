@@ -26,7 +26,7 @@
 	<ul>
 		{ #each socials as social}
 			<li>
-				<a href="{social.url}>">{social.name}</a>
+				<a href="{social.url}">{social.name}</a>
 			</li>
 		{/each}
 	</ul>

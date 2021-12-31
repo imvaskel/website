@@ -1,7 +1,7 @@
 <script>
 	import Nav from '../components/Nav.svelte';
 	import { onMount } from "svelte";
-	import { fade, slide } from "svelte/transition";
+	import slide  from "svelte/transition";
 
 	let loaded = false
 	onMount(() => {

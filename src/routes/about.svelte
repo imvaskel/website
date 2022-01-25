@@ -2,7 +2,7 @@
 	var socials = [
 		{ url: "https://github.com/imvaskel", name: "GitHub"},
 		{ url: "https://twitter.com/imvaskel", name:"Twitter"},
-		{ url: "https://discord.com/users/447422100798570496", name: "Discord (Vaskel#0001)"},
+		{ url: "https://discord.com/users/447422100798570496", name: "Discord (Vaskel#6714)"},
 		{ url: "mailto:contact@vaskel.gay", name: "Email"}
 	]
 </script>

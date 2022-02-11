@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker build -t website:latest
+docker build -t website:latest .
 
 docker run -d \
     --restart unless-stopped \

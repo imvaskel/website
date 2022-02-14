@@ -25,9 +25,16 @@ a {
   box-sizing: border-box;
 }
 
-.container {
+.root_container {
   padding: 0 10vw;
   height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1, h2, h3, h4, h5, h6 {

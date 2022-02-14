@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
-import Footer from "../lib/footer";
-import Nav from "../lib/nav";
-import styles from "../styles/globals.module.css"
+import Footer from "../components/footer";
+import Nav from "../components/nav";
+import styles from "../styles/globals.module.css";
 
 const Header = styled.h1`
     font-size: 2em;

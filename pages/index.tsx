@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import Nav from '../lib/nav'
-import Footer from '../lib/footer'
+import Nav from '../components/nav'
+import Footer from '../components/footer'
 import { AVATAR_URL } from '../lib/constants'
 import Head from 'next/head'
 import styles from "../styles/globals.module.css"

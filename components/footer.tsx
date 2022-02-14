@@ -1,4 +1,4 @@
-import styles from "../styles/footer.module.css"
+import styles from "./footer.module.css"
 import { AiFillGithub, AiOutlineTwitter } from "react-icons/ai"
 import { SiMinutemailer } from "react-icons/si"
 import { FaDiscord } from "react-icons/fa"

@@ -3,6 +3,7 @@ import Head from "next/head";
 import styled from "styled-components";
 import Footer from "../lib/footer";
 import Nav from "../lib/nav";
+import styles from "../styles/globals.module.css"
 
 const Header = styled.h1`
     font-size: 2em;
@@ -22,7 +23,7 @@ const LI = styled.li`
 
 const About: NextPage = () => {
     return (
-        <div className="root_container" style={{fontSize: "large"}}>
+        <div className={styles.content} style={{fontSize: "large"}}>
             <Head>
                 <title>About</title>
             </Head>

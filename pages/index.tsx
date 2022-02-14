@@ -4,28 +4,24 @@ import Nav from '../lib/nav'
 import Footer from '../lib/footer'
 import { AVATAR_URL } from '../lib/constants'
 import Head from 'next/head'
+import styles from "../styles/globals.module.css"
 
 const Avatar = <img
-  style = {{
-    height: "256px",
-    width: "256px",
-    borderRadius: "50%",
-    marginTop: "32px"
-  }}
+  className={styles.avatar}
   src={AVATAR_URL + ".png?size=1024"}
   onMouseOver={e => e.currentTarget.src = AVATAR_URL + ".gif?size=1024"}
-  onMouseLeave={e => e.currentTarget.src = AVATAR_URL + ".png?size=1024"}>
-</img>
+  onMouseLeave={e => e.currentTarget.src = AVATAR_URL + ".png?size=1024"} 
+/>
 
 const Home: NextPage = () => {
   return (
-    <div className="root_container">
+    <div className={styles.content}>
       <Head>
         <title>Home</title>
       </Head>
 
       <Nav />
-      <div className="container">
+      <div className={styles.container}>
         
         {Avatar}
         <h1>Welcome!</h1>

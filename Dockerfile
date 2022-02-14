@@ -1,13 +1,20 @@
-FROM node:14-alpine 
- 
-WORKDIR /usr/src/app 
-# the entire project is copied 
-COPY / ./ 
-RUN npm install 
-RUN npm run build 
- 
-CMD ["node", "__sapper__/build"] 
- 
-EXPOSE 3000 
- 
-ENV HOST=0.0.0.0 
+# pull official base image
+FROM node:13.12.0-alpine
+
+# set working directory
+WORKDIR /app
+
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
+
+# add app
+COPY . ./
+
+# start app
+CMD ["npm", "start"]

@@ -1,8 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
-import Footer from "../components/footer";
-import Nav from "../components/nav";
 import styles from "../styles/globals.module.css";
 
 const Header = styled.h1`
@@ -27,7 +25,6 @@ const About: NextPage = () => {
             <Head>
                 <title>About</title>
             </Head>
-            <Nav />
 
             <Header>About Me</Header>
             <Paragraph>
@@ -49,7 +46,6 @@ const About: NextPage = () => {
             <Paragraph>Kotlin: This is a language that I know decently well and like to program in if it isn't python.</Paragraph>
             <Paragraph>Rust: I'm learning this one and enjoy it, though I wouldn't say I know it well.</Paragraph>
             <Paragraph>C#/Java: I know both of these enough to manage, though I do not like them that much. </Paragraph>
-            <Footer />
         </div>
     )
 }

@@ -1,15 +1,12 @@
 .footer_container {
-    position: fixed;
+    left: 49%;
+    position: absolute;
     bottom: 5vh;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin-left: -10vw;
-    gap: 32px;
+    transform: translate(-50%)
 }
 
 .icon {
     width: 32px;
-    height: 32px
+    height: 32px;
+    margin-left: 32px;
 }

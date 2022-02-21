@@ -7,12 +7,12 @@
 
 .content {
     padding: 0 10vw;
-    height: 100vh;
+    height: 100%;
 }
   
 .container {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

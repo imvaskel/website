@@ -1,26 +1,22 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
-import Nav from '../components/nav'
-import Footer from '../components/footer'
-import { AVATAR_URL } from '../lib/constants'
 import Head from 'next/head'
+import Link from 'next/link'
+import { avatarUrl } from '../lib/constants'
 import styles from "../styles/globals.module.css"
 
 const Avatar = <img
   className={styles.avatar}
-  src={AVATAR_URL + ".png?size=1024"}
-  onMouseOver={e => e.currentTarget.src = AVATAR_URL + ".gif?size=1024"}
-  onMouseLeave={e => e.currentTarget.src = AVATAR_URL + ".png?size=1024"} 
+  src={avatarUrl + ".png?size=1024"}
+  onMouseOver={e => e.currentTarget.src = avatarUrl + ".gif?size=1024"}
+  onMouseLeave={e => e.currentTarget.src = avatarUrl + ".png?size=1024"} 
 />
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.content}>
+    <div className={styles.content} style={{fontSize: "large"}}>
       <Head>
         <title>Home</title>
       </Head>
-
-      <Nav />
       <div className={styles.container}>
         
         {Avatar}
@@ -37,7 +33,6 @@ const Home: NextPage = () => {
             </Link>.
         </p>
       </div>
-      <Footer />
     </div>
   )
 }

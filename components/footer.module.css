@@ -1,12 +1,15 @@
 .footer_container {
-    left: 49%;
-    position: absolute;
-    bottom: 5vh;
-    transform: translate(-50%)
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    column-gap: 2rem;
 }
 
 .icon {
-    width: 32px;
-    height: 32px;
-    margin-left: 32px;
+    width: 2rem;
+    height: 2rem;
+    margin-left: auto;
+    margin-right: auto;
 }

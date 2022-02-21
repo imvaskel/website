@@ -9,6 +9,7 @@ const Avatar = <img
   src={avatarUrl + ".png?size=1024"}
   onMouseOver={e => e.currentTarget.src = avatarUrl + ".gif?size=1024"}
   onMouseLeave={e => e.currentTarget.src = avatarUrl + ".png?size=1024"} 
+  alt="Avatar"
 />
 
 const Home: NextPage = () => {

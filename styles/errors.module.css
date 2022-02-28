@@ -1,0 +1,6 @@
+/* without completely rebuilding the error page, this is the only easy way to do so. */
+.error_404 > div {
+    background-color: inherit !important;
+    font-family: inherit !important;
+    font-size: large !important;
+}

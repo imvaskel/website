@@ -1,0 +1,7 @@
+.grid_container {
+    display: grid;
+    padding: 5vh 10vw;
+    height: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5vw;
+}

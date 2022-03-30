@@ -2,13 +2,20 @@
     display: flex;
     flex-direction: column;
     border-style: solid;
-    border-width: 2px;
+    border-width: 3px;
     border-radius: 1rem;
-    border-color: #E91E63;
+    border-color: #e91e63;
+    box-shadow: 0 6px 8px 0 rgba(233, 30, 99, 0.2);
+    transition: 0.3s;
+}
+
+.card_container:hover {
+    box-shadow: 0 8px 8px 0 rgba(233, 30, 99, 0.3);
 }
 
 .card_container > * {
-    padding: 0em 10px 0 10px;
+    padding-left: 1em;
+    margin-right: 1em;
 }
 
 .card_header {
@@ -23,11 +30,18 @@
     flex-direction: row;
     column-gap: 10px;
     align-items: center;
-    justify-self: flex-end;
+    margin-top: auto;
 }
 
 .card_header svg {
-    margin-left: 10px;
     height: 20px;
     width: 20px;
+}
+
+.repo_lang_color {
+    width: 16px;
+    height: 16px;
+    border: 1px;
+    border-radius: 50%;
+    border-width: 1px;
 }

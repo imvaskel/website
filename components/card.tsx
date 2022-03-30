@@ -35,18 +35,25 @@ export const Card = ({ repo }: PropsWithChildren<{ repo: Repository }>) => {
                 <a href={repo.link}> <h2>{repo.repo}</h2> </a>
             </header>
 
-            <p>{repo.description}</p>
+            {/* Probably not the best way to this, but it's the only way i could find. */}
+            <p style={{marginTop: "-5px"}}>{repo.description}</p>
 
             <footer className={styles.card_footer}>
-                <RepoLangColor color={repo.languageColor} /> <p>{repo.language}</p>
+                <span className={styles.repo_lang_color} style={{
+                    backgroundColor: repo.languageColor,
+                    borderColor: repo.languageColor
+                }}
+                />
+                <p>{repo.language}</p>
                 <FaRegStar
                     style={{
-                        paddingLeft: "5px",
                         width: "16px",
                         height: "16px",
+                        float: "right",
+                        marginLeft: "auto"
                     }}
                 />
-                <p>{repo.stars}</p>
+                <p style={{marginRight: "1em"}}>{repo.stars}</p>
             </footer>
         </div>
     )

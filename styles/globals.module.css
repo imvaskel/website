@@ -1,18 +1,18 @@
 .avatar {
-    border-radius: 50%;
-    margin-top: 32px;
-    height: 256px;
-    width: 256px;
+  border-radius: 50%;
+  margin-top: 32px;
+  height: 256px;
+  width: 256px;
 }
 
 .content {
-    padding: 0 10vw;
-    height: 100%;
+  padding: 0 10vw;
+  height: 100%;
 }
-  
+
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

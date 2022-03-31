@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  website:
+    build: .
+    image: website:latest
+    ports:
+      - "8934:3000"

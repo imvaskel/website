@@ -29,7 +29,7 @@ const About: NextPage = () => {
       <Header>About Me</Header>
       <Paragraph>
         I'm not too sure what to put here, but here we go. Hi, I'm Vaskel. I'm a
-        bisexual high schooler from the US, I play video games and program. I
+        gay high schooler from the US, I play video games and program. I
         know, so interesting. The best place to contact me is on discord.
         <br />
       </Paragraph>

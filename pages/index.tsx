@@ -1,15 +1,17 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { avatarUrl } from "../lib/constants";
+import config  from "../config.json";
 import styles from "../styles/globals.module.css";
+
+const avatarUrl = config.avatarUrl
 
 const Avatar = (
   <img
     className={styles.avatar}
     src={avatarUrl + ".png?size=1024"}
-    onMouseOver={(e) => (e.currentTarget.src = avatarUrl + ".gif?size=1024")}
-    onMouseLeave={(e) => (e.currentTarget.src = avatarUrl + ".png?size=1024")}
+    // onMouseOver={(e) => (e.currentTarget.src = avatarUrl + ".gif?size=1024")}
+    // onMouseLeave={(e) => (e.currentTarget.src = avatarUrl + ".png?size=1024")}
     alt="Avatar"
   />
 );

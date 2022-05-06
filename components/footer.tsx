@@ -2,13 +2,9 @@ import styles from "./footer.module.css";
 import { AiFillGithub, AiOutlineTwitter } from "react-icons/ai";
 import { SiMinutemailer } from "react-icons/si";
 import { FaDiscord } from "react-icons/fa";
+import config from "../config.json";
 
-const socials = {
-  discord: "https://discord.com/users/447422100798570496",
-  twitter: "https://twitter.com/imvaskel",
-  github: "https://github.com/imvaskel",
-  email: "mailto:contact@vaskel.gay",
-};
+const socials = config.socials
 
 const Footer = () => {
   return (

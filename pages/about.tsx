@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import styled from "styled-components";
 import styles from "../styles/globals.module.css";
 
@@ -30,7 +31,15 @@ const About: NextPage = () => {
       <Paragraph>
         I'm not too sure what to put here, but here we go. Hi, I'm Vaskel. I'm a
         gay high schooler from the US, I play video games and program. I
-        know, so interesting. The best place to contact me is on discord.
+        know, so interesting. The best place to contact me is on discord. You can find my prounouns page {" "}
+        <a
+          style={{
+            color: "#E91E63",
+          }}
+          href="https://en.pronouns.page/@vaskel"
+        >
+          here
+        </a>.
         <br />
       </Paragraph>
 

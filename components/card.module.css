@@ -1,15 +1,18 @@
 .card_container {
   display: flex;
   flex-direction: column;
-  border-style: solid;
   border-width: 3px;
   border-radius: 1rem;
-  border-color: #e91e63;
-  box-shadow: 0 6px 8px 0 rgba(233, 30, 99, 0.2);
+  background-color: #251e1e;
 }
 
 .card_container:hover {
-  box-shadow: 0 8px 8px 0 rgba(233, 30, 99, 0.3);
+  background-color: #e91e63;
+}
+
+/* Personally, I do not see why I cannot just do an easier selector but w/e */
+.card_container:hover > header > a > h2 {
+  color: white;
 }
 
 .card_container > * {

@@ -1,7 +1,6 @@
-import { AnimateSharedLayout, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { PropsWithChildren } from "react";
 import styles from "./nav.module.css";
 
 const pages = [
@@ -20,6 +19,9 @@ const pages = [
 ]
 
 const isActive = (href: string, path: string): Boolean => {
+  if (href === "/") {
+    return path === href
+  }
   return path.startsWith(href)
 }
 

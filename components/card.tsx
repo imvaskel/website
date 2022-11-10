@@ -35,16 +35,17 @@ export const Card = ({ repo, key }: PropsWithChildren<{ repo: Repository, key: s
       className={styles.card_container}
       variants={cardVariant}
       key={key}
+      whileHover={{ scale: 1.1}}
     >
-      <header className={styles.card_header}>
-        <RiGitRepositoryLine />
-        <a href={repo.link}>
-          {" "}
-          <h2>{repo.repo}</h2>{" "}
-        </a>
-      </header>
+  <header className={styles.card_header}>
+    <RiGitRepositoryLine />
+    <a href={repo.link}>
+      {" "}
+      <h2>{repo.repo}</h2>{" "}
+    </a>
+  </header>
 
-      {/* Probably not the best way to this, but it's the only way i could find. */}
+{/* Probably not the best way to this, but it's the only way i could find. */ }
       <p style={{ marginTop: "-5px" }}>{repo.description}</p>
 
       <footer className={styles.card_footer}>
@@ -66,6 +67,6 @@ export const Card = ({ repo, key }: PropsWithChildren<{ repo: Repository, key: s
         />
         <p style={{ marginRight: "1em" }}>{repo.stars}</p>
       </footer>
-    </motion.li>
+    </motion.li >
   );
 };

@@ -22,7 +22,7 @@ const Projects: NextPage = () => {
 
   useEffect(() => {
     axios
-      .get("https://gh-pinned-repos.egoist.sh/?username=ImVaskel")
+      .get("https://gh-pinned-repos.egoist.dev/?username=ImVaskel")
       .then((res) => {
         setRepos(res.data);
       })

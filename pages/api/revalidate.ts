@@ -1,9 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import config from "../../config.json"
 
 // Allow me to make a request to have the website revalidate my avatar.
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.query.secret != config.token) {
+    if (req.query.secret != process.env.token) {
         return res.status(401).json({message: "Invalid token"})
     }
 

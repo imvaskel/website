@@ -1,45 +1,19 @@
 .navbar {
   display: flex;
-  font-weight: 300;
-  flex-direction: row;
   padding: 0 10vw;
 }
 
-.nav_link_container {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  align-self: center;
-}
-
-.nav_link_container::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
 .nav_link {
-  display: block;
-  float: left;
-  padding-top: 1em;
-  padding-right: 1em;
-}
-
-/*
-    Add a line below the current link in the navbar.
-*/
-.nav_link a[aria-current] {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1.5rem;
   position: relative;
-  display: inline-block;
 }
 
-.nav_link a[aria-current]::after {
-  position: absolute;
-  content: "";
-  width: 100%;
+.nav_underline {
   height: 2px;
-  background-color: #ded3ff;
-  display: block;
-  bottom: -2px;
+  width: 100%;
+  border-color: rgba(222, 211, 255);
+  border-width: 1px;
+  border-style: solid;
 }

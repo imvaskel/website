@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import styled from "styled-components";
+import Layout from "../components/layout";
 import styles from "../styles/globals.module.css";
 
 const Header = styled.h1`
@@ -22,50 +23,49 @@ const LI = styled.li`
 
 const About: NextPage = () => {
   return (
-    <div className={styles.content} style={{ fontSize: "large" }}>
-      <Head>
-        <title>About</title>
-      </Head>
-
-      <Header>About Me</Header>
-      <Paragraph>
-        I'm not too sure what to put here, but here we go. Hi, I'm Vaskel. I'm a
-        gay high schooler from the US, I play video games and program. I
-        know, so interesting. The best place to contact me is on discord. You can find my prounouns page {" "}
-        <a
-          style={{
-            color: "#E91E63",
-          }}
-          href="https://en.pronouns.page/@vaskel"
-        >
-          here
-        </a>.
-        <br />
-      </Paragraph>
-
-      <Header>Social Media</Header>
-      <Paragraph>You can find my social media in the footer.</Paragraph>
-
-      <Header>Languages</Header>
-      <Paragraph>
-        These are my most proficient languages ranked from highest to lowest.
-      </Paragraph>
-      <Paragraph>
-        Python: This is my first language and my most liked one.
-      </Paragraph>
-      <Paragraph>
-        Kotlin: This is a language that I know decently well and like to program
-        in if it isn't python.
-      </Paragraph>
-      <Paragraph>
-        Rust: I'm learning this one and enjoy it, though I wouldn't say I know
-        it well.
-      </Paragraph>
-      <Paragraph>
-        C#/Java: I know both of these enough to manage, though I do not like
-        them that much.{" "}
-      </Paragraph>
-    </div>
+    <Layout>
+      <div className={styles.content} style={{ fontSize: "large" }}>
+        <Head>
+          <title>About</title>
+        </Head>
+        <Header>About Me</Header>
+        <Paragraph>
+          I'm not too sure what to put here, but here we go. Hi, I'm Vaskel. I'm a
+          gay high schooler from the US, I play video games and program. I
+          know, so interesting. The best place to contact me is on discord. You can find my prounouns page {" "}
+          <a
+            style={{
+              color: "#E91E63",
+            }}
+            href="https://en.pronouns.page/@vaskel"
+          >
+            here
+          </a>.
+          <br />
+        </Paragraph>
+        <Header>Social Media</Header>
+        <Paragraph>You can find my social media in the footer.</Paragraph>
+        <Header>Languages</Header>
+        <Paragraph>
+          These are my most proficient languages ranked from highest to lowest.
+        </Paragraph>
+        <Paragraph>
+          Python: This is my first language and my most liked one.
+        </Paragraph>
+        <Paragraph>
+          Kotlin: This is a language that I know decently well and like to program
+          in if it isn't python.
+        </Paragraph>
+        <Paragraph>
+          Rust: I'm learning this one and enjoy it, though I wouldn't say I know
+          it well.
+        </Paragraph>
+        <Paragraph>
+          C#/Java: I know both of these enough to manage, though I do not like
+          them that much.{" "}
+        </Paragraph>
+      </div>
+    </Layout>
   );
 };
 

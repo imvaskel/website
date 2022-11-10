@@ -1,32 +1,43 @@
+import { AnimateSharedLayout, motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PropsWithChildren } from "react";
 import styles from "./nav.module.css";
 
-const NavbarLink = ({
-  href,
-  name,
-}: PropsWithChildren<{ href: string; name: string }>) => {
-  const router = useRouter();
-  const isCurrent = href === router.asPath ? "page" : undefined;
+const pages = [
+  {
+    name: "Home",
+    href: "/"
+  },
+  {
+    name: "About",
+    href: "/about"
+  },
+  {
+    name: "Projects",
+    href: "/projects"
+  }
+]
 
-  return (
-    <li className={styles.nav_link}>
-      <Link href={href}>
-        <a aria-current={isCurrent}>{name}</a>
-      </Link>
-    </li>
-  );
-};
+const isActive = (href: string, path: string): Boolean => {
+  return path.startsWith(href)
+}
 
 const Nav = () => {
+  const router = useRouter();
+
   return (
     <nav className={styles.navbar}>
-      <ul className={styles.nav_link_container}>
-        <NavbarLink href="/" name="Home" />
-        <NavbarLink href="/about" name="About" />
-        <NavbarLink href="/projects" name="Projects" />
-      </ul>
+        {pages.map(({name, href}) => (
+          <Link href={href} key={href}>
+            <a className={styles.nav_link}>
+              {name}
+              {isActive(href, router.pathname) && (
+                <motion.div layoutId="nav-underline" className={styles.nav_underline} />
+              )}
+            </a>
+          </Link>
+        ))}
     </nav>
   );
 };

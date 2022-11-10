@@ -3,14 +3,26 @@ import { NextPage } from "next";
 import { Repository, Card } from "../components/card";
 import styles from "../styles/projects.module.css";
 import axios from "axios";
+import { motion } from "framer-motion";
+import Layout from "../components/layout";
+
+const containerVariant = {
+  visible: {
+    transition: {
+      when: "beforeChildren",
+      delayChildren: 0,
+      staggerChildren: 0.5,
+    }
+  }
+}
 
 const Projects: NextPage = () => {
-  const [repos, setRepos]: [Repository[], (posts: Repository[]) => void] =
+  const [repos, setRepos] =
     useState([] as Array<Repository>);
 
   useEffect(() => {
     axios
-      .get<Repository[]>("https://gh-pinned-repos.egoist.sh/?username=ImVaskel")
+      .get("https://gh-pinned-repos.egoist.sh/?username=ImVaskel")
       .then((res) => {
         setRepos(res.data);
       })
@@ -20,11 +32,18 @@ const Projects: NextPage = () => {
   }, []);
 
   return (
-    <div className={styles.grid_container}>
-      {repos.map((r) => (
-        <Card repo={r} key={r.repo} />
-      ))}
-    </div>
+    <Layout>
+      <motion.ul
+        className={styles.grid_container}
+        variants={containerVariant}
+        initial="hidden"
+        animate={repos.length > 0 && "visible"}
+      >
+        {repos.map((r) => (
+          <Card repo={r} key={r.repo} />
+        ))}
+      </motion.ul>
+    </Layout>
   );
 };
 

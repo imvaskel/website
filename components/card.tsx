@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { FaRegStar } from "react-icons/fa";
 import { RiGitRepositoryLine } from "react-icons/ri";
-import styled from "styled-components";
+import { motion, Variants } from "framer-motion";
 import styles from "./card.module.css";
 
 export interface Repository {
@@ -16,20 +16,26 @@ export interface Repository {
   description?: string;
 }
 
-const RepoLangColor = styled.span<{ color: string }>`
-  width: 16px;
-  height: 16px;
-  border: 1px;
-  border-radius: 50%;
-  border-width: 1px;
-  border-color: ${(props) => props.color};
-  background-color: ${(props) => props.color};
-  margin-left: 10px;
-`;
+const cardVariant: Variants = {
+  hidden: {
+    y: "-100vw"
+  },
+  visible: {
+    y: 0,
+    transition: {
+      type: "spring",
+      duration: 2.0,
+    }
+  }
+}
 
-export const Card = ({ repo }: PropsWithChildren<{ repo: Repository }>) => {
+export const Card = ({ repo, key }: PropsWithChildren<{ repo: Repository, key: string }>) => {
   return (
-    <div className={styles.card_container}>
+    <motion.li
+      className={styles.card_container}
+      variants={cardVariant}
+      key={key}
+    >
       <header className={styles.card_header}>
         <RiGitRepositoryLine />
         <a href={repo.link}>
@@ -60,6 +66,6 @@ export const Card = ({ repo }: PropsWithChildren<{ repo: Repository }>) => {
         />
         <p style={{ marginRight: "1em" }}>{repo.stars}</p>
       </footer>
-    </div>
+    </motion.li>
   );
 };

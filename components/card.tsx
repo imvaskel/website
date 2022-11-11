@@ -3,6 +3,7 @@ import { FaRegStar } from "react-icons/fa";
 import { RiGitRepositoryLine } from "react-icons/ri";
 import { motion, Variants } from "framer-motion";
 import styles from "./card.module.css";
+import Link from "next/link";
 
 export interface Repository {
   owner: string;
@@ -39,10 +40,10 @@ export const Card = ({ repo, key }: PropsWithChildren<{ repo: Repository, key: s
     >
   <header className={styles.card_header}>
     <RiGitRepositoryLine />
-    <a href={repo.link}>
+    <Link href={repo.link}>
       {" "}
       <h2>{repo.repo}</h2>{" "}
-    </a>
+    </Link>
   </header>
 
 {/* Probably not the best way to this, but it's the only way i could find. */ }

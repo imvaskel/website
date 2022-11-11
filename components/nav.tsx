@@ -31,13 +31,11 @@ const Nav = () => {
   return (
     <nav className={styles.navbar}>
         {pages.map(({name, href}) => (
-          <Link href={href} key={href}>
-            <a className={styles.nav_link}>
-              {name}
-              {isActive(href, router.pathname) && (
-                <motion.div layoutId="nav-underline" className={styles.nav_underline} />
-              )}
-            </a>
+          <Link href={href} key={href} className={styles.nav_link}>
+            {name}
+            {isActive(href, router.pathname) && (
+              <motion.div layoutId="nav-underline" className={styles.nav_underline} />
+            )}
           </Link>
         ))}
     </nav>

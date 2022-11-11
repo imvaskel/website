@@ -16,28 +16,20 @@ const Footer = () => {
   return (
     <div className={styles.footer_container}>
       <Link href={`${socials.discord}`}>
-        <a>
-          <span className={styles.sr_only}>Discord</span>
-          <FaDiscord className={styles.icon} />
-        </a>
+        <span className={styles.sr_only}>Discord</span>
+        <FaDiscord className={styles.icon} />
       </Link>
       <Link href={`${socials.twitter}`}>
-        <a>
-          <span className={styles.sr_only}>Twitter</span>
-          <AiOutlineTwitter className={styles.icon} />
-        </a>
+        <span className={styles.sr_only}>Twitter</span>
+        <AiOutlineTwitter className={styles.icon} />
       </Link>
       <Link href={`${socials.github}`}>
-        <a>
-          <span className={styles.sr_only}>GitHub</span>
-          <AiFillGithub className={styles.icon} />
-        </a>
+        <span className={styles.sr_only}>GitHub</span>
+        <AiFillGithub className={styles.icon} />
       </Link>
       <Link href={`${socials.email}`}>
-        <a>
-          <span className={styles.sr_only}>Email</span>
-          <SiMinutemailer className={styles.icon} />
-        </a>
+        <span className={styles.sr_only}>Email</span>
+        <SiMinutemailer className={styles.icon} />
       </Link>
     </div>
   );

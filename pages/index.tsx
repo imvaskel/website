@@ -3,6 +3,12 @@ import type { NextPage } from "next";
 import { PropsWithChildren } from "react";
 import Layout from "../components/layout";
 import styles from "../styles/index.module.css";
+import { Indie_Flower } from "@next/font/google";
+
+const indieFlower = Indie_Flower({
+  weight: "400",
+  subsets: ["latin"]
+})
 
 const Avatar = ({ avatar }: PropsWithChildren<{ avatar: string }>) => {
   return <img
@@ -17,7 +23,7 @@ const Home: NextPage<{ avatar: string }> = ({ avatar }) => {
     <Layout>
       <div className={styles.content}>
         <div>
-          <h1 className={styles.title}>
+          <h1 className={`${styles.title} ${indieFlower.className}`}>
             hi, i'm vaskel.
           </h1>
         </div>

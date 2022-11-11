@@ -24,46 +24,24 @@ const LI = styled.li`
 const About: NextPage = () => {
   return (
     <Layout>
-      <div className={styles.content} style={{ fontSize: "large" }}>
+      <div className={styles.content} style={{ fontSize: "large", flexGrow: 1 }}>
         <Head>
           <title>About</title>
         </Head>
         <Header>About Me</Header>
         <Paragraph>
-          I'm not too sure what to put here, but here we go. Hi, I'm Vaskel. I'm a
-          gay high schooler from the US, I play video games and program. I
-          know, so interesting. The best place to contact me is on discord. You can find my prounouns page {" "}
-          <a
-            style={{
-              color: "#E91E63",
-            }}
-            href="https://en.pronouns.page/@vaskel"
-          >
-            here
-          </a>.
-          <br />
+          Hi, I'm Vaskel. I go by he/him but I'm not bothered by they/them either. (and no, I do not care how my name is
+          pronounced as long as it's somewhat correct sounding)
+          <br /> <br/>
+          I'm one of those gay creatures from the US (and not one of the good states sadly). I "program", but mostly hang
+          around and talk to friends and play some video games, feel free to dm me on discord and I may reply (i'm anxious so might not)
         </Paragraph>
-        <Header>Social Media</Header>
-        <Paragraph>You can find my social media in the footer.</Paragraph>
-        <Header>Languages</Header>
-        <Paragraph>
-          These are my most proficient languages ranked from highest to lowest.
-        </Paragraph>
-        <Paragraph>
-          Python: This is my first language and my most liked one.
-        </Paragraph>
-        <Paragraph>
-          Kotlin: This is a language that I know decently well and like to program
-          in if it isn't python.
-        </Paragraph>
-        <Paragraph>
-          Rust: I'm learning this one and enjoy it, though I wouldn't say I know
-          it well.
-        </Paragraph>
-        <Paragraph>
-          C#/Java: I know both of these enough to manage, though I do not like
-          them that much.{" "}
-        </Paragraph>
+
+        <Header>Hobbies or something, idk</Header>
+        <ul>
+          <LI>Video Games. I may not be that good but I can have a fun time fucking around.</LI>
+          <LI>"Programming". I program occasionally, but I'm creatively void and usually don't program for long periods of time.</LI>
+        </ul>
       </div>
     </Layout>
   );

@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import Head from "next/head";
+import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 import Footer from "./footer";
 import styles from "./layout.module.css";
@@ -14,8 +16,17 @@ export default function Layout({
   children
 }: React.PropsWithChildren<{}>): ReactElement {
 
+  const router = useRouter();
+  const title = router.pathname === "/"
+    ? "Home"
+    : router.asPath.charAt(1).toUpperCase() + router.asPath.slice(2)
+
   return (
     <div className={styles.layout}>
+      <Head>
+        <title>{title}</title>
+      </Head>
+
       <Nav />
       <motion.main
         className={styles.main}

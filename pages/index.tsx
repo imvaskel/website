@@ -40,7 +40,8 @@ export async function getStaticProps() {
   return {
     props: {
       avatar: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`
-    }
+    },
+    revalidate: 12 * 60 * 60 // 12h * 60minutes * 60 seconds
   }
 }
 

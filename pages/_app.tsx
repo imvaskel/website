@@ -11,19 +11,21 @@ const firaMono = Fira_Mono({
 
 function App({ Component, pageProps, router }: AppProps) {
   return (
-    <AnimatePresence
-      exitBeforeEnter
-      initial={false}
-      onExitComplete={() => window.scrollTo(0, 0)}
-    >
+    <>
       <style jsx global>{`
         html {
           font-family: ${firaMono.style.fontFamily}, "Courier New", Courier, monospace;
         }
       `}</style>
 
-      <Component {...pageProps} canonical={router.asPath} key={router.asPath} />
-    </AnimatePresence>
+      <AnimatePresence
+        exitBeforeEnter
+        initial={false}
+        onExitComplete={() => window.scrollTo(0, 0)}
+      >
+        <Component {...pageProps} canonical={router.asPath} key={router.asPath} />
+      </AnimatePresence>
+    </>
   );
 }
 

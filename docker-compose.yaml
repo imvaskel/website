@@ -5,3 +5,5 @@ services:
     image: website:latest
     ports:
       - "8934:3000"
+    env_file:
+      - "./.env"

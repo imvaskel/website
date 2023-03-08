@@ -16,24 +16,59 @@ const containerVariant = {
   }
 }
 
+const Spinner = () => {
+  return (
+    <div className={styles.spinner_container}>
+      <div className={styles.loading_spinner}>
+
+      </div>
+    </div>
+  )
+}
+
 const Projects: NextPage = () => {
   const [repos, setRepos] =
     useState([] as Array<Repository>);
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState("");
 
   useEffect(() => {
+    setIsLoading(true)
     axios
       .get("https://gh-pinned-repos.egoist.dev/?username=ImVaskel")
       .then((res) => {
-        setRepos(res.data);
+        if (res.data.length !== 0) {
+          setRepos(res.data)
+        }
+        else {
+          setErr("API did not return anything.")
+        }
+        setIsLoading(false)
       })
       .catch((err) => {
-        console.log(err.message);
+        setErr(err)
+        setIsLoading(false)
       });
   }, []);
 
+  if (isLoading) {
+    return <Spinner />
+  }
+
+  if (err) {
+    return (
+      <Layout>
+        <div className={styles.error_container}>
+          <h1>An Error Occurred:</h1>
+          <p>{err || "API did not return anything."}</p>
+        </div>
+      </Layout>
+    )
+  }
+
   return (
     <Layout>
-      <motion.ul
+       <motion.ul
         className={styles.grid_container}
         variants={containerVariant}
         initial="hidden"

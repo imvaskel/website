@@ -7,6 +7,38 @@
   row-gap: 3rem;
 }
 
+.loading_spinner {
+  width: 75px;
+  height: 75px;
+  border: 10px solid #e91e63;
+  border-top: 10px solid #383636;
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}
+
+.spinner_container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.error_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .grid_container {
     grid-template-columns: 1fr;

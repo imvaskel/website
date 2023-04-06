@@ -1,8 +1,4 @@
 {
   "extends": "next/core-web-vitals",
-  "rules": {
-    "react-hooks/rules-of-hooks": "off",
-    "react/no-unescaped-entities": "off",
-    "@next/next/no-img-element": "off" // ignore using Image, due to my use case breaking if i use it instead.
-  }
+  "rules": { "react/no-unescaped-entities": 0 }
 }

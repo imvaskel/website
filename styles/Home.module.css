@@ -38,9 +38,14 @@
 }
 
 .social_link {
-  background-color: rgb(7, 141, 111);
+  background-color: hsl(167, 91%, 29%);
   border-radius: 2em;
   padding: 0.25em 0.75em
+}
+
+.social_link:hover {
+  background-color: hsl(167, 91%, 15%);
+  animation: ease-in 1s;
 }
 
 .gay {

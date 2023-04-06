@@ -45,7 +45,6 @@
 
 .social_link:hover {
   background-color: hsl(167, 91%, 15%);
-  animation: ease-in 1s;
 }
 
 .gay {
@@ -109,5 +108,12 @@
 
   .social_link {
     font-size: 15px;
+  }
+}
+
+/* This is a fix to a weird issue wherein 800 ~< x ~< 1600 width, the I'm gets newlined instead of staying on the same line*/
+@media (max-width: 1600px) {
+  .header_wrapper {
+    display: unset;
   }
 }

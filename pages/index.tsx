@@ -52,7 +52,7 @@ const Home: NextPage<{ avatar: string }> = ({ avatar }) => {
           </div>
         </div>
         <img
-          src={`${avatar}?size=1024`}
+          src={`${avatar}.png?size=1024`}
           className={styles.avatar}
         />
       </div>

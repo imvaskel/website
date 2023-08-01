@@ -5,14 +5,14 @@ import { Indie_Flower, Work_Sans } from "next/font/google";
 import Link from "next/link";
 
 const indieFlower = Indie_Flower({ weight: "400", subsets: ["latin"] });
-const workSans = Work_Sans({weight: "300", subsets: ["latin"]})
+const workSans = Work_Sans({ weight: "300", subsets: ["latin"] });
 
-const socials = {
-  discord: process.env.NEXT_PUBLIC_discord,
-  twitter: process.env.NEXT_PUBLIC_twitter,
-  github: process.env.NEXT_PUBLIC_github,
-  email: process.env.NEXT_PUBLIC_email,
-};
+const socials = [
+  { href: "https://discord.com/users/447422100798570496", name: "discord" },
+  { href: "https://twitter.com/imvaskel", name: "twitter" },
+  { href: "https://github.com/imvaskel", name: "github" },
+  { href: "mailto:contact@vaskel.gay", name: "email" },
+];
 
 const Home: NextPage<{ avatar: string }> = ({ avatar }) => {
   return (
@@ -37,24 +37,14 @@ const Home: NextPage<{ avatar: string }> = ({ avatar }) => {
             link below!).
           </p>
           <div className={styles.socials_container}>
-            <Link className={styles.social_link} href={`${socials.discord}`}>
-              Discord
-            </Link>
-            <Link className={styles.social_link} href={`${socials.twitter}`}>
-              Twitter
-            </Link>
-            <Link className={styles.social_link} href={`${socials.github}`}>
-              GitHub
-            </Link>
-            <Link className={styles.social_link} href={`${socials.email}`}>
-              Email
-            </Link>
+            {socials.map(({ name, href }) => (
+              <Link className={styles.social_link} href={href} key={href}>
+                {name}
+              </Link>
+            ))}
           </div>
         </div>
-        <img
-          src={`${avatar}?size=1024`}
-          className={styles.avatar}
-        />
+        <img src={`${avatar}?size=1024`} className={styles.avatar} />
       </div>
     </main>
   );
@@ -63,7 +53,12 @@ const Home: NextPage<{ avatar: string }> = ({ avatar }) => {
 export async function getStaticProps() {
   const res = await axios.get(
     `https://discord.com/api/v10/users/${process.env.id}`,
-    { headers: { Authorization: `Bot ${process.env.token}` } }
+    {
+      headers: {
+        Authorization: `Bot ${process.env.token}`,
+        "User-Agent": "DiscordBot (https://github.com/imvaskel/website 0.1.0)",
+      },
+    }
   );
   const user = res.data;
 
@@ -71,7 +66,7 @@ export async function getStaticProps() {
     props: {
       avatar: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`,
     },
-    revalidate: 1 * 60 * 60
+    revalidate: 1 * 60 * 60,
   };
 }
 

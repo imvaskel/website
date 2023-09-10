@@ -12,6 +12,7 @@ const socials = [
   { href: "https://twitter.com/imvaskel", name: "twitter" },
   { href: "https://github.com/imvaskel", name: "github" },
   { href: "mailto:contact@vaskel.gay", name: "email" },
+  { href: "https://en.pronouns.page/@vaskel", name: "pronouns"}
 ];
 
 const Home: NextPage<{ avatar: string }> = ({ avatar }) => {
@@ -30,6 +31,7 @@ const Home: NextPage<{ avatar: string }> = ({ avatar }) => {
             </h1>
           </div>
           <p className={styles.text}>
+            Or you can call me Skylar, I go by either.
             I'm from the US and going to college to study computer science
             (there's a joke in here, I feel it.), and y'know, I'm a bit fruity.{" "}
             <b>(he/they)</b>.<br />

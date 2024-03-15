@@ -1,4 +1,8 @@
 {
   "extends": "next/core-web-vitals",
-  "rules": { "react/no-unescaped-entities": 0 }
+  "rules": {
+    "react/no-unescaped-entities": 0,
+    // TODO: Is this a good decision?
+    "@next/next/no-img-element": 0
+  }
 }

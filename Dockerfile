@@ -1,26 +1,24 @@
-# Install dependencies only when needed
-FROM node:lts-alpine AS deps
+FROM node:lts-slim AS deps
+
 
 WORKDIR /opt/app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json yarn.lock .yarnrc.yml ./
+# Cursed
+RUN corepack enable && \
+    corepack prepare $(grep -o "yarn@[0-9].[0-9].[0-9]" package.json) && \
+    yarn config set supportedArchitectures.libc 'musl' # because we are on alpine
+RUN yarn install --immutable
 
-# Rebuild the source code only when needed
-# This is where because may be the case that you would try
-# to build the app based on some `X_TAG` in my case (Git commit hash)
-# but the code hasn't changed.
 FROM node:lts-alpine AS builder
 
-ENV NODE_ENV=production
+ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1
 WORKDIR /opt/app
 COPY . .
 COPY --from=deps /opt/app/node_modules ./node_modules
 RUN yarn build
 
-# Production image, copy all the files and run next
 FROM node:lts-alpine AS runner
 
-ARG X_TAG
 WORKDIR /opt/app
 ENV NODE_ENV=production
 COPY --from=builder /opt/app/next.config.js ./

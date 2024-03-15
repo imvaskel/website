@@ -28,6 +28,9 @@ export async function generateMetadata(): Promise<Metadata> {
       images: avatar,
       locale: "en_US",
       type: "website"
+    },
+    twitter: {
+      card: "summary"
     }
   }
 }

@@ -1,13 +1,9 @@
 import styles from "@/styles/Home.module.css";
-import axios from "axios";
-import { NextPage } from "next";
-import { Indie_Flower, Work_Sans } from "next/font/google";
-import { useRouter } from "next/router";
-import { ReactEventHandler } from "react";
+import { Metadata, NextPage } from "next";
+import { Indie_Flower } from "next/font/google";
 
 
 const indieFlower = Indie_Flower({ weight: "400", subsets: ["latin"] });
-const workSans = Work_Sans({ weight: "300", subsets: ["latin"] });
 
 const socials = [
   { href: "https://discord.com/users/447422100798570496", name: "discord" },
@@ -17,19 +13,30 @@ const socials = [
   { href: "https://en.pronouns.page/@vaskel", name: "pronouns" },
 ];
 
-const Home: NextPage<{ avatar: string }> = ({ avatar }) => {
-  const router = useRouter();
+export async function generateMetadata(): Promise<Metadata> {
+  const avatar = await getAvatar();
 
-  const onImageError: ReactEventHandler<HTMLImageElement> = async (target) => {
-    // This is kind of rigged, but I am unsure how to properly do this.
-    // It will cause a problem for the person who unfortunately gets to be the one who
-    // has to reload, but it is whatever.
-    const res = await fetch("/api/revalidate");
-    router.reload();
-  };
+  return {
+    title: "About",
+    description: "About me",
+    creator: "Vaskel",
+    openGraph: {
+      title: "Vaskel",
+      description: "About me",
+      url: "https://vaskel.gay",
+      siteName: "vaskel.gay",
+      images: avatar,
+      locale: "en_US",
+      type: "website"
+    }
+  }
+}
+
+const Home: NextPage<{}> = async () => {
+  const avatar = await getAvatar();
 
   return (
-    <main className={`${styles.main} ${workSans.className}`}>
+    <main className={`${styles.main}`}>
       <div className={styles.wrapper}>
         <div className={styles.text_container}>
           <div className={styles.header_wrapper}>
@@ -64,34 +71,39 @@ const Home: NextPage<{ avatar: string }> = ({ avatar }) => {
           </div>
         </div>
         <img
-          src={`${avatar}.png?size=1024`}
+          src={avatar}
           className={styles.avatar}
           alt="Avatar"
-          onError={onImageError}
         />
       </div>
     </main>
   );
 };
 
-export async function getStaticProps() {
-  const res = await axios.get(
+const getAvatar = async () => {
+  const res = await fetch(
     `https://discord.com/api/v10/users/${process.env.id}`,
     {
       headers: {
         Authorization: `Bot ${process.env.token}`,
         "User-Agent": "DiscordBot (https://github.com/imvaskel/website 0.1.0)",
       },
+      next: {
+        // 60 seconds * 15 minutes
+        // TODO: Dynamic revalidation based off of whether the <img> errors.
+        // Likely have to add an api route to fix this.
+        revalidate: 60 * 15
+      }
     }
   );
-  const user = res.data;
 
-  return {
-    props: {
-      avatar: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`,
-    },
-    revalidate: 1 * 60 * 60,
-  };
+  if (!res.ok) {
+    throw new Error("Failed to fetch avatar data.");
+  }
+
+  const user = await res.json();
+  return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`;
+
 }
 
 export default Home;

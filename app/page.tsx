@@ -1,7 +1,11 @@
 import styles from "@/styles/Home.module.css";
+import { createWriteStream } from "fs";
+import { readdir, rm, writeFile } from "fs/promises";
 import { Metadata, NextPage } from "next";
 import { Indie_Flower } from "next/font/google";
-
+import path from "path";
+import { Readable } from "stream";
+import { finished } from "stream/promises";
 
 const indieFlower = Indie_Flower({ weight: "400", subsets: ["latin"] });
 
@@ -14,7 +18,7 @@ const socials = [
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
-  const avatar = await getAvatar();
+  const image = await ensureAvatar();
 
   return {
     title: "About",
@@ -25,18 +29,18 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "About me",
       url: "https://vaskel.gay",
       siteName: "vaskel.gay",
-      images: avatar,
+      images: `https://vaskel.gay${image}`,
       locale: "en_US",
-      type: "website"
+      type: "website",
     },
     twitter: {
-      card: "summary"
-    }
-  }
+      card: "summary",
+    },
+  };
 }
 
 const Home: NextPage<{}> = async () => {
-  const avatar = await getAvatar();
+  const image = await ensureAvatar();
 
   return (
     <main className={`${styles.main}`}>
@@ -73,17 +77,15 @@ const Home: NextPage<{}> = async () => {
             ))}
           </div>
         </div>
-        <img
-          src={avatar}
-          className={styles.avatar}
-          alt="Avatar"
-        />
+        <img src={image} className={styles.avatar} alt="Avatar" />
       </div>
     </main>
   );
 };
 
-const getAvatar = async () => {
+const publicDir = path.join(process.cwd(), "public");
+
+const ensureAvatar = async () => {
   const res = await fetch(
     `https://discord.com/api/v10/users/${process.env.id}`,
     {
@@ -95,18 +97,39 @@ const getAvatar = async () => {
         // 60 seconds * 15 minutes
         // TODO: Dynamic revalidation based off of whether the <img> errors.
         // Likely have to add an api route to fix this.
-        revalidate: 60 * 15
-      }
+        revalidate: 60 * 15,
+      },
     }
   );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch avatar data.");
+  const user = await res.json();
+  const dir = await readdir(publicDir);
+
+  // If the avatar is not already cached, cache it and remove old ones.
+  if (!dir.includes(`${user.avatar}.png`)) {
+    const url = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`;
+
+    const avatarRes = await fetch(url, {
+      cache: "no-store",
+    });
+
+    if (!avatarRes.ok) {
+      throw new Error("Error downloading avatar stream.");
+    }
+
+    const avatarPath = path.join(process.cwd(), "public", `${user.avatar}.png`);
+    const buffer = Buffer.from(await avatarRes.arrayBuffer());
+    await writeFile(avatarPath, buffer);
+
+    for (const file of dir) {
+      if (file != `${user.avatar}.png` && file.endsWith(".png")) {
+        await rm(path.join(publicDir, file), { force: true });
+        console.debug(`removed cached avatar public/${file}`);
+      }
+    }
   }
 
-  const user = await res.json();
-  return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`;
-
-}
+  return `/${user.avatar}.png`;
+};
 
 export default Home;

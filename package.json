@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:down": "docker compose down",
+    "docker:up": "docker compose up -d",
+    "docker:up:build": "docker compose up --build -d",
+    "docker:rebuild": "docker compose down && docker compose up --build -d"
   },
   "dependencies": {
     "next": "14.1.3",

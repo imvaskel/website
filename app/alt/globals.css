@@ -28,3 +28,7 @@
     rgb(0, 0, 0)
   );
 }
+
+.gay, .enby {
+  border-radius: 32px;
+}

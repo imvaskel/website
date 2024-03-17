@@ -1,11 +1,12 @@
 "use client";
 
+import { useTheme } from "next-themes";
+import Image from "next/image";
+import { useRef } from "react";
 import { FiSun } from "react-icons/fi";
 import styles from "./nav.module.css";
-import { useTheme } from "next-themes";
-import { useRef } from "react";
 
-const Nav = () => {
+const Nav = ({ gayToggle = false }: { gayToggle?: boolean }) => {
   let { theme, setTheme } = useTheme();
   const gayRef = useRef<HTMLImageElement>(null);
 
@@ -15,7 +16,8 @@ const Nav = () => {
       TODO: onClick activates after 2 mouse clicks on FF. Why?
       */}
       <button
-        onClick={(ev) => {
+        type="button"
+        onClick={() => {
           switch (theme) {
             case "dark":
               theme = "light";
@@ -26,26 +28,37 @@ const Nav = () => {
             default:
               theme = "dark";
           }
-          console.log(theme)
           setTheme(theme);
         }}
       >
         <FiSun data-theme={theme} />
       </button>
-      <button onClick={(ev) => {
-        let lines = document.querySelectorAll("#line");
-        if (lines.length === 2) {
-          let first = lines[0];
-          let second = lines[1];
-          first.classList.toggle("gay");
-          second.classList.toggle("enby");
-        }
-        if (gayRef.current !== null) {
-          gayRef.current.classList.toggle(styles.notGay);
-        }
-      }}>
-        <img ref={gayRef} src="gay.svg" alt="gay" className={styles.notGay}></img>
-      </button>
+      {gayToggle && (
+        <button
+          type="button"
+          onClick={() => {
+            document.querySelectorAll("#line").forEach((el, key) => {
+              if (key % 2 === 0) {
+                el.classList.toggle("gay");
+              } else {
+                el.classList.toggle("enby");
+              }
+            });
+            if (gayRef.current !== null) {
+              gayRef.current.classList.toggle(styles.notGay);
+            }
+          }}
+        >
+          <Image
+            ref={gayRef}
+            src="gay.svg"
+            alt="gay"
+            width={16}
+            height={16}
+            className={styles.notGay}
+          ></Image>
+        </button>
+      )}
     </nav>
   );
 };

@@ -1,8 +1,9 @@
-import styles from "./styles.module.css";
 import { readdir, rm, writeFile } from "fs/promises";
 import { Metadata, NextPage } from "next";
 import { Indie_Flower } from "next/font/google";
+import Image from "next/image";
 import path from "path";
+import styles from "./styles.module.css";
 
 const indieFlower = Indie_Flower({ weight: "400", subsets: ["latin"] });
 
@@ -74,7 +75,7 @@ const Home: NextPage<{}> = async () => {
             ))}
           </div>
         </div>
-        <img src={image} className={styles.avatar} alt="Avatar" />
+        <Image width={128} height={128} src={image} className={styles.avatar} alt="Avatar" />
       </div>
     </main>
   );

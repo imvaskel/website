@@ -28,6 +28,7 @@
 .line {
   background-color: var(--dimRed);
   height: 5px;
+  border-radius: 32px;
 }
 
 .intro {

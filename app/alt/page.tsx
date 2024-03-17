@@ -58,7 +58,7 @@ const Test: NextPage<{}> = () => {
           </ul>
         </div>
       </div>
-      <Nav />
+      <Nav gayToggle />
     </main>
   );
 };

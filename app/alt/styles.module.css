@@ -18,6 +18,11 @@
     line-height: 1em;
     color: var(--dimAqua);
   }
+
+  @media only screen and (max-width: 480px) {
+    align-items: unset;
+    padding-left: 15vw;
+  }
 }
 
 .line {
@@ -29,11 +34,11 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin-left: 4.5em;
+  margin-left: 20vw;
   gap: 1em;
 
   & h1 {
-    font-size: 5em;
+    font-size: 5vw;
     justify-self: left;
     width: fit-content;
   }
@@ -43,30 +48,24 @@
     align-items: center;
 
     & .line {
-      width: 23em;
+      width: 25vw;
     }
   }
 
   @media only screen and (max-width: 480px) {
-    margin-left: 2em;
+    margin-left: 0px;
 
     & h1 {
-      font-size: 2em;
-    }
-
-    & div {
-      .line {
-        width: 6.5em;
-      }
+      font-size: 14vw;
     }
   }
 }
 
 .name {
-  font-size: 15em;
+  font-size: 15vw;
 
   @media only screen and (max-width: 480px) {
-    font-size: 5em;
+    font-size: 27vw;
   }
 }
 
@@ -74,27 +73,31 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  gap: 1em;
+  gap: 1vw;
   padding-left: 30vw;
 
   & .line {
-    width: 30em;
+    width: 33vw;
     margin-top: 5px;
   }
 
   & ul {
     display: flex;
     flex-direction: row;
-    gap: 1em;
+    gap: 1vw;
     justify-content: end;
     list-style: none;
   }
 
   @media only screen and (max-width: 480px) {
-    padding-left: 5.5em;
+    padding-left: 0;
 
     & .line {
-      width: 4.5em;
+      width: 50vw;
+    }
+
+    & ul {
+      gap: 1.5vw;
     }
   }
 }

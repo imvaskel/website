@@ -46,10 +46,28 @@
       width: 23em;
     }
   }
+
+  @media only screen and (max-width: 480px) {
+    margin-left: 2em;
+
+    & h1 {
+      font-size: 2em;
+    }
+
+    & div {
+      .line {
+        width: 6.5em;
+      }
+    }
+  }
 }
 
 .name {
   font-size: 15em;
+
+  @media only screen and (max-width: 480px) {
+    font-size: 5em;
+  }
 }
 
 .social {
@@ -71,28 +89,8 @@
     justify-content: end;
     list-style: none;
   }
-}
 
-@media only screen and (max-width: 480px) {
-  .name {
-    font-size: 5em;
-  }
-
-  .intro {
-    margin-left: 2em;
-
-    & h1 {
-      font-size: 2em;
-    }
-
-    & div {
-      .line {
-        width: 6.5em;
-      }
-    }
-  }
-
-  .social {
+  @media only screen and (max-width: 480px) {
     padding-left: 5.5em;
 
     & .line {

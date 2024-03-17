@@ -1,10 +1,9 @@
 import { NextPage } from "next";
 import styles from "./styles.module.css";
-import "./globals.css"
 import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa6";
 import { IoMailOutline } from "react-icons/io5";
 import { Indie_Flower } from "next/font/google";
-import Nav from "@/components/nav";
+import { Nav, GayButton } from "@/components/nav";
 
 const indieFlower = Indie_Flower({
   weight: "400",
@@ -28,12 +27,12 @@ const Test: NextPage<{}> = () => {
             Hey, I'm
           </h1>
           <div>
-            <div className={styles.line} id="line"></div>
+            <div className={styles.line}></div>
           </div>
         </div>
         <h1 className={`${styles.name} ${indieFlower.className}`}>Vaskel.</h1>
         <div className={styles.social}>
-          <div className={styles.line} id="line"></div>
+          <div className={styles.line}></div>
           <ul>
             <li>
               <a target="_blank" rel="noreferrer" href={socials.github}>
@@ -58,10 +57,16 @@ const Test: NextPage<{}> = () => {
           </ul>
         </div>
       </div>
-      <Nav gayToggle />
+      <Nav>
+        <GayButton
+          lineClass={styles.line}
+          gayClass={styles.gay}
+          enbyClass={styles.enby}
+        />
+      </Nav>
     </main>
   );
 };
 
 export default Test;
-export { generateMetadata } from "@/app/page"
+export { generateMetadata } from "@/app/page";

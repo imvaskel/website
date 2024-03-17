@@ -2,13 +2,51 @@
 
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useRef } from "react";
+import { PropsWithChildren, useRef } from "react";
 import { FiSun } from "react-icons/fi";
 import styles from "./nav.module.css";
 
-const Nav = ({ gayToggle = false }: { gayToggle?: boolean }) => {
-  let { theme, setTheme } = useTheme();
+const GayButton = ({
+  lineClass,
+  gayClass,
+  enbyClass,
+}: {
+  lineClass: string;
+  gayClass: string;
+  enbyClass: string;
+}) => {
   const gayRef = useRef<HTMLImageElement>(null);
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        document.querySelectorAll(`.${lineClass}`).forEach((el, key) => {
+          if (key % 2 === 0) {
+            el.classList.toggle(gayClass);
+          } else {
+            el.classList.toggle(enbyClass);
+          }
+        });
+        if (gayRef.current !== null) {
+          gayRef.current.classList.toggle(styles.notGay);
+        }
+      }}
+    >
+      <Image
+        ref={gayRef}
+        src="gay.svg"
+        alt="gay"
+        width={16}
+        height={16}
+        className={styles.notGay}
+      ></Image>
+    </button>
+  );
+};
+
+const Nav = ({ children }: PropsWithChildren<{}>) => {
+  let { theme, setTheme } = useTheme();
 
   return (
     <nav className={styles.navbar}>
@@ -33,34 +71,9 @@ const Nav = ({ gayToggle = false }: { gayToggle?: boolean }) => {
       >
         <FiSun data-theme={theme} />
       </button>
-      {gayToggle && (
-        <button
-          type="button"
-          onClick={() => {
-            document.querySelectorAll("#line").forEach((el, key) => {
-              if (key % 2 === 0) {
-                el.classList.toggle("gay");
-              } else {
-                el.classList.toggle("enby");
-              }
-            });
-            if (gayRef.current !== null) {
-              gayRef.current.classList.toggle(styles.notGay);
-            }
-          }}
-        >
-          <Image
-            ref={gayRef}
-            src="gay.svg"
-            alt="gay"
-            width={16}
-            height={16}
-            className={styles.notGay}
-          ></Image>
-        </button>
-      )}
+      {children}
     </nav>
   );
 };
 
-export default Nav;
+export { Nav, GayButton };

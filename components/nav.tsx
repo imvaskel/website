@@ -19,6 +19,8 @@ const GayButton = ({
 
   return (
     <button
+      aria-label="Toggle gay display"
+      title="Toggle gay display"
       type="button"
       onClick={() => {
         document.querySelectorAll(`.${lineClass}`).forEach((el, key) => {
@@ -54,6 +56,8 @@ const Nav = ({ children }: PropsWithChildren<{}>) => {
       TODO: onClick activates after 2 mouse clicks on FF. Why?
       */}
       <button
+        aria-label="Toggle light/dark"
+        title="Toggle light/dark"
         type="button"
         onClick={() => {
           switch (theme) {
@@ -69,7 +73,11 @@ const Nav = ({ children }: PropsWithChildren<{}>) => {
           setTheme(theme);
         }}
       >
-        <FiSun data-theme={theme} />
+        <FiSun
+          aria-label="Toggle light/dark"
+          title="Toggle light/dark"
+          data-theme={theme}
+        />
       </button>
       {children}
     </nav>

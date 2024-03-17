@@ -20,7 +20,7 @@ const socials = {
 
 const Test: NextPage<{}> = () => {
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main} ${styles.animated} ${styles.bounceIn}`}>
       <div className={styles.slant}>
         <div className={styles.intro}>
           <h1 className={`${styles.intro} ${indieFlower.className}`}>
@@ -35,23 +35,47 @@ const Test: NextPage<{}> = () => {
           <div className={styles.line}></div>
           <ul>
             <li>
-              <a target="_blank" rel="noreferrer" href={socials.github}>
-                <FaGithub />
+              <a
+                aria-label="GitHub"
+                title="GitHub"
+                target="_blank"
+                rel="noreferrer"
+                href={socials.github}
+              >
+                <FaGithub aria-label="GitHub" title="GitHub" />
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href={socials.discord}>
-                <FaDiscord />
+              <a
+                aria-label="Discord"
+                title="Discord"
+                target="_blank"
+                rel="noreferrer"
+                href={socials.discord}
+              >
+                <FaDiscord aria-label="Discord" title="Discord" />
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href={socials.email}>
-                <IoMailOutline />
+              <a
+                aria-label="Email"
+                title="Email"
+                target="_blank"
+                rel="noreferrer"
+                href={socials.email}
+              >
+                <IoMailOutline aria-label="Email" title="Email" />
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href={socials.twitter}>
-                <FaTwitter />
+              <a
+                aria-label="Twitter"
+                title="Twitter"
+                target="_blank"
+                rel="noreferrer"
+                href={socials.twitter}
+              >
+                <FaTwitter aria-label="Twitter" title="Twitter" />
               </a>
             </li>
           </ul>

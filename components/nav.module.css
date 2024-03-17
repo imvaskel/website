@@ -9,6 +9,7 @@
 
   & button {
     padding-right: 1.5em;
+    cursor: pointer;
 
     /* Reset default button stuff*/
     font-family: inherit;

@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import styles from "./styles.module.css";
+import "./globals.css"
 import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa6";
 import { IoMailOutline } from "react-icons/io5";
 import { Indie_Flower } from "next/font/google";
@@ -23,17 +24,17 @@ const Test: NextPage<{}> = () => {
     <main className={styles.main}>
       <div className={styles.slant}>
         <div className={styles.intro}>
-          <h1 className={`${styles.intro} ${indieFlower.className} ${styles.header}`}>
+          <h1 className={`${styles.intro} ${indieFlower.className}`}>
             Hey, I'm
           </h1>
-          <div className={styles.container}>
-            <div className={styles.line}></div>
+          <div>
+            <div className={styles.line} id="line"></div>
           </div>
         </div>
         <h1 className={`${styles.name} ${indieFlower.className}`}>Vaskel.</h1>
         <div className={styles.social}>
-          <div className={styles.line}></div>
-          <ul className={styles.container}>
+          <div className={styles.line} id="line"></div>
+          <ul>
             <li>
               <a target="_blank" rel="noreferrer" href={socials.github}>
                 <FaGithub />

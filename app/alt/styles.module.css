@@ -10,14 +10,14 @@
   justify-content: center;
   flex-direction: column;
 
-  & .header {
+  & {
+    transform: rotate(-10deg);
+  }
+
+  & h1 {
     line-height: 1em;
     color: var(--dimAqua);
   }
-}
-
-.slant > * {
-  transform: rotate(-10deg);
 }
 
 .line {
@@ -32,13 +32,13 @@
   margin-left: 4.5em;
   gap: 1em;
 
-  & .intro_header {
+  & h1 {
     font-size: 5em;
     justify-self: left;
     width: fit-content;
   }
 
-  & .container {
+  & div {
     display: flex;
     align-items: center;
 
@@ -64,7 +64,7 @@
     margin-top: 5px;
   }
 
-  & .container {
+  & ul {
     display: flex;
     flex-direction: row;
     gap: 1em;
@@ -74,7 +74,6 @@
 }
 
 @media only screen and (max-width: 480px) {
-
   .name {
     font-size: 5em;
   }
@@ -82,11 +81,11 @@
   .intro {
     margin-left: 2em;
 
-    & .header {
+    & h1 {
       font-size: 2em;
     }
 
-    & .container {
+    & div {
       .line {
         width: 6.5em;
       }

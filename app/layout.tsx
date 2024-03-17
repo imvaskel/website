@@ -13,7 +13,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={workSans.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

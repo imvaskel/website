@@ -7,7 +7,7 @@
   justify-content: end;
   height: 5%;
 
-  & .theme_toggle {
+  & button {
     padding-right: 1.5em;
 
     /* Reset default button stuff*/
@@ -18,9 +18,41 @@
     border-style: none;
     background-color: inherit;
 
-    & .icon {
+    & svg {
       height: 16px;
       width: 16px;
+
+      &[data-theme="light"] {
+        color: yellow;
+
+        &:hover {
+          color: black;
+        }
+      }
+
+      &[data-theme="dark"] {
+        color: white;
+
+        &:hover {
+          color: var(--dimYellow);
+        }
+      }
+    }
+
+    & img {
+      height: 16px;
+      width: 16px;
+
+      &.notGay {
+        filter: grayscale();
+      }
+      &.notGay:hover {
+        filter: none;
+      }
+
+      &:hover {
+        filter: grayscale();
+      }
     }
   }
 }

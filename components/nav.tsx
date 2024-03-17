@@ -13,6 +13,7 @@ const Nav = () => {
       TODO: onClick activates after 2 mouse clicks on FF. Why?
       */}
       <button
+        className={styles.theme_toggle}
         onClick={(ev) => {
           switch (theme) {
             case "dark":
@@ -28,7 +29,7 @@ const Nav = () => {
           setTheme(theme);
         }}
       >
-        <FiSun />
+        <FiSun className={styles.icon} />
       </button>
     </nav>
   );

@@ -7,7 +7,7 @@
   justify-content: end;
   height: 5%;
 
-  & button {
+  & .theme_toggle {
     padding-right: 1.5em;
 
     /* Reset default button stuff*/
@@ -18,7 +18,7 @@
     border-style: none;
     background-color: inherit;
 
-    & svg {
+    & .icon {
       height: 16px;
       width: 16px;
     }

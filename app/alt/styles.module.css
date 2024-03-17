@@ -1,4 +1,4 @@
-main {
+.main {
   height: 100vh;
   overflow: hidden;
 }
@@ -10,14 +10,14 @@ main {
   justify-content: center;
   flex-direction: column;
 
-  & {
-    transform: rotate(-10deg);
-  }
-
-  & h1 {
+  & .header {
     line-height: 1em;
     color: var(--dimAqua);
   }
+}
+
+.slant > * {
+  transform: rotate(-10deg);
 }
 
 .line {
@@ -32,13 +32,13 @@ main {
   margin-left: 4.5em;
   gap: 1em;
 
-  & h1 {
+  & .intro_header {
     font-size: 5em;
     justify-self: left;
     width: fit-content;
   }
 
-  & div {
+  & .container {
     display: flex;
     align-items: center;
 
@@ -64,7 +64,7 @@ main {
     margin-top: 5px;
   }
 
-  & ul {
+  & .container {
     display: flex;
     flex-direction: row;
     gap: 1em;
@@ -82,11 +82,11 @@ main {
   .intro {
     margin-left: 2em;
 
-    & h1 {
+    & .header {
       font-size: 2em;
     }
 
-    & div {
+    & .container {
       .line {
         width: 6.5em;
       }

@@ -20,20 +20,20 @@ const socials = {
 
 const Test: NextPage<{}> = () => {
   return (
-    <main>
+    <main className={styles.main}>
       <div className={styles.slant}>
         <div className={styles.intro}>
-          <h1 className={`${styles.intro} ${indieFlower.className}`}>
+          <h1 className={`${styles.intro} ${indieFlower.className} ${styles.header}`}>
             Hey, I'm
           </h1>
-          <div>
+          <div className={styles.container}>
             <div className={styles.line}></div>
           </div>
         </div>
         <h1 className={`${styles.name} ${indieFlower.className}`}>Vaskel.</h1>
         <div className={styles.social}>
           <div className={styles.line}></div>
-          <ul>
+          <ul className={styles.container}>
             <li>
               <a target="_blank" rel="noreferrer" href={socials.github}>
                 <FaGithub />

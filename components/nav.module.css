@@ -23,18 +23,22 @@
       width: 16px;
 
       &[data-theme="light"] {
-        color: yellow;
+        color: var(--fg);
 
-        &:hover {
-          color: black;
+        @media only screen and (min-width: 728px) {
+          &:hover {
+            color: black;
+          }
         }
       }
 
       &[data-theme="dark"] {
-        color: white;
+        color: var(--fg);
 
-        &:hover {
-          color: var(--dimYellow);
+        @media only screen and (min-width: 728px) {
+          &:hover {
+            color: yellow;
+          }
         }
       }
     }
@@ -46,12 +50,14 @@
       &.notGay {
         filter: grayscale();
       }
-      &.notGay:hover {
-        filter: none;
-      }
+      @media only screen and (min-width: 728px) {
+        &.notGay:hover {
+          filter: none;
+        }
 
-      &:hover {
-        filter: grayscale();
+        &:hover {
+          filter: grayscale();
+        }
       }
     }
   }

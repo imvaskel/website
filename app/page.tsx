@@ -1,11 +1,8 @@
-import styles from "@/styles/Home.module.css";
-import { createWriteStream } from "fs";
+import styles from "./styles.module.css";
 import { readdir, rm, writeFile } from "fs/promises";
 import { Metadata, NextPage } from "next";
 import { Indie_Flower } from "next/font/google";
 import path from "path";
-import { Readable } from "stream";
-import { finished } from "stream/promises";
 
 const indieFlower = Indie_Flower({ weight: "400", subsets: ["latin"] });
 

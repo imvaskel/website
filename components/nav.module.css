@@ -1,0 +1,26 @@
+.navbar {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  height: 5%;
+
+  & button {
+    padding-right: 1.5em;
+
+    /* Reset default button stuff*/
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    text-transform: none;
+    border-style: none;
+    background-color: inherit;
+
+    & svg {
+      height: 16px;
+      width: 16px;
+    }
+  }
+}

@@ -93,8 +93,6 @@ const ensureAvatar = async () => {
       },
       next: {
         // 60 seconds * 15 minutes
-        // TODO: Dynamic revalidation based off of whether the <img> errors.
-        // Likely have to add an api route to fix this.
         revalidate: 60 * 15,
       },
     }

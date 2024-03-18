@@ -2,18 +2,20 @@
 
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import { PropsWithChildren, useRef } from "react";
+import { PropsWithChildren, RefObject, useRef } from "react";
 import { FiSun } from "react-icons/fi";
 import styles from "./nav.module.css";
+import Link from "next/link";
+
+enum Theme {
+  DARK = "dark",
+  LIGHT = "light",
+};
 
 const GayButton = ({
-  lineClass,
-  gayClass,
-  enbyClass,
+  onClick
 }: {
-  lineClass: string;
-  gayClass: string;
-  enbyClass: string;
+  onClick: () => void
 }) => {
   const gayRef = useRef<HTMLImageElement>(null);
 
@@ -23,13 +25,7 @@ const GayButton = ({
       title="Toggle gay display"
       type="button"
       onClick={() => {
-        document.querySelectorAll(`.${lineClass}`).forEach((el, key) => {
-          if (key % 2 === 0) {
-            el.classList.toggle(gayClass);
-          } else {
-            el.classList.toggle(enbyClass);
-          }
-        });
+        onClick();
         if (gayRef.current !== null) {
           gayRef.current.classList.toggle(styles.notGay);
         }
@@ -47,6 +43,12 @@ const GayButton = ({
   );
 };
 
+const LinkItem = ({href, name}: {href: string, name: string}) => {
+  return <Link href={href} aria-label={name}>
+    {name}
+  </Link>
+}
+
 const Nav = ({ children }: PropsWithChildren<{}>) => {
   let { theme, setTheme } = useTheme();
 
@@ -60,17 +62,7 @@ const Nav = ({ children }: PropsWithChildren<{}>) => {
         title="Toggle light/dark"
         type="button"
         onClick={() => {
-          switch (theme) {
-            case "dark":
-              theme = "light";
-              break;
-            case "light":
-              theme = "dark";
-              break;
-            default:
-              theme = "dark";
-          }
-          setTheme(theme);
+          setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK)
         }}
       >
         <FiSun
@@ -80,6 +72,9 @@ const Nav = ({ children }: PropsWithChildren<{}>) => {
         />
       </button>
       {children}
+      <div className={styles.link_container}>
+        <LinkItem href="/about" name="About"/>
+      </div>
     </nav>
   );
 };

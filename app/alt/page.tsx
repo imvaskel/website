@@ -1,13 +1,14 @@
+"use client";
 import { NextPage } from "next";
 import styles from "./styles.module.css";
 import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa6";
 import { IoMailOutline } from "react-icons/io5";
 import { Indie_Flower } from "next/font/google";
 import { Nav, GayButton } from "@/components/nav";
+import { useState } from "react";
 
 const indieFlower = Indie_Flower({
   weight: "400",
-  subsets: ["latin"],
 });
 
 const socials = {
@@ -19,6 +20,8 @@ const socials = {
 };
 
 const Test: NextPage<{}> = () => {
+  const [isGay, setIsGay] = useState<boolean>(false);
+
   return (
     <main className={`${styles.main} ${styles.animated} ${styles.bounceIn}`}>
       <div className={styles.slant}>
@@ -27,12 +30,12 @@ const Test: NextPage<{}> = () => {
             Hey, I'm
           </h1>
           <div>
-            <div className={styles.line}></div>
+            <div className={`${styles.line} ${isGay ? styles.gay : ""}`}></div>
           </div>
         </div>
         <h1 className={`${styles.name} ${indieFlower.className}`}>Vaskel.</h1>
         <div className={styles.social}>
-          <div className={styles.line}></div>
+          <div className={`${styles.line} ${isGay ? styles.enby : ""}`}></div>
           <ul>
             <li>
               <a
@@ -83,9 +86,9 @@ const Test: NextPage<{}> = () => {
       </div>
       <Nav>
         <GayButton
-          lineClass={styles.line}
-          gayClass={styles.gay}
-          enbyClass={styles.enby}
+          onClick={() => {
+            setIsGay(!isGay);
+          }}
         />
       </Nav>
     </main>
@@ -93,4 +96,3 @@ const Test: NextPage<{}> = () => {
 };
 
 export default Test;
-export { generateMetadata } from "@/app/page";

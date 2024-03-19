@@ -1,13 +1,13 @@
-FROM node:lts-slim AS deps
+FROM node:lts-alpine AS deps
 
+RUN apk add --no-cache libc6-compat
 
 WORKDIR /opt/app
 COPY package.json yarn.lock .yarnrc.yml ./
 # Cursed
 RUN corepack enable && \
     corepack prepare $(grep -o "yarn@[0-9].[0-9].[0-9]" package.json) && \
-    yarn config set supportedArchitectures.libc 'musl' # because we are on alpine
-RUN yarn install --immutable
+    yarn install --immutable
 
 FROM node:lts-alpine AS builder
 

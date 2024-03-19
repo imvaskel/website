@@ -1,9 +1,7 @@
-import { Work_Sans } from "next/font/google";
-import "./globals.css";
+import { workSans } from "@/lib/fonts";
 import "@/styles/gruvbox-material.css";
 import { ThemeProvider } from "next-themes";
-
-const workSans = Work_Sans({ subsets: ["latin"] });
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -13,9 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={workSans.className}>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

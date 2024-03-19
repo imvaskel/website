@@ -73,4 +73,12 @@
       color: var(--fg1);
     }
   }
+
+  @media only screen and (cursor: coarse) {
+    gap: 2vw;
+    & button > :is(img, svg) {
+      height: 32px;
+      width: 32px;
+    }
+  }
 }

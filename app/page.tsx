@@ -1,11 +1,12 @@
+import { indieFlower } from "@/lib/fonts";
 import { readdir, rm, writeFile } from "fs/promises";
-import { Metadata, NextPage } from "next";
-import { Indie_Flower } from "next/font/google";
+import type { Metadata } from "next";
+import { NextPage } from "next";
 import Image from "next/image";
 import path from "path";
 import styles from "./styles.module.css";
+import { defaultMetadata } from "@/lib/utils";
 
-const indieFlower = Indie_Flower({ weight: "400", subsets: ["latin"] });
 
 const socials = [
   { href: "https://discord.com/users/447422100798570496", name: "discord" },
@@ -14,28 +15,6 @@ const socials = [
   { href: "mailto:contact@vaskel.gay", name: "email" },
   { href: "https://en.pronouns.page/@vaskel", name: "pronouns" },
 ];
-
-export async function generateMetadata(): Promise<Metadata> {
-  const image = await ensureAvatar();
-
-  return {
-    title: "About",
-    description: "About me",
-    creator: "Vaskel",
-    openGraph: {
-      title: "Vaskel",
-      description: "About me",
-      url: "https://vaskel.gay",
-      siteName: "vaskel.gay",
-      images: `https://vaskel.gay${image}`,
-      locale: "en_US",
-      type: "website",
-    },
-    twitter: {
-      card: "summary",
-    },
-  };
-}
 
 const Home: NextPage<{}> = async () => {
   const image = await ensureAvatar();
@@ -83,7 +62,14 @@ const Home: NextPage<{}> = async () => {
 
 const publicDir = path.join(process.cwd(), "public");
 
-const ensureAvatar = async () => {
+export const generateMetadata = async (): Promise<Metadata> => {
+  let base = await defaultMetadata();
+  base.description = "Vaskel"
+
+  return base;
+}
+
+export const ensureAvatar = async (): Promise<string> => {
   const res = await fetch(
     `https://discord.com/api/v10/users/${process.env.id}`,
     {

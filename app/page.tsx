@@ -1,11 +1,9 @@
 import { indieFlower } from "@/lib/fonts";
-import { readdir, rm, writeFile } from "fs/promises";
+import { defaultMetadata, ensureAvatar } from "@/lib/utils";
 import type { Metadata } from "next";
 import { NextPage } from "next";
 import Image from "next/image";
-import path from "path";
 import styles from "./styles.module.css";
-import { defaultMetadata } from "@/lib/utils";
 
 
 const socials = [
@@ -60,7 +58,7 @@ const Home: NextPage<{}> = async () => {
   );
 };
 
-const publicDir = path.join(process.cwd(), "public");
+
 
 export const generateMetadata = async (): Promise<Metadata> => {
   let base = await defaultMetadata();
@@ -68,50 +66,5 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
   return base;
 }
-
-export const ensureAvatar = async (): Promise<string> => {
-  const res = await fetch(
-    `https://discord.com/api/v10/users/${process.env.id}`,
-    {
-      headers: {
-        Authorization: `Bot ${process.env.token}`,
-        "User-Agent": "DiscordBot (https://github.com/imvaskel/website 0.1.0)",
-      },
-      next: {
-        // 60 seconds * 15 minutes
-        revalidate: 60 * 15,
-      },
-    }
-  );
-
-  const user = await res.json();
-  const dir = await readdir(publicDir);
-
-  // If the avatar is not already cached, cache it and remove old ones.
-  if (!dir.includes(`${user.avatar}.png`)) {
-    const url = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`;
-
-    const avatarRes = await fetch(url, {
-      cache: "no-store",
-    });
-
-    if (!avatarRes.ok) {
-      throw new Error("Error downloading avatar stream.");
-    }
-
-    const avatarPath = path.join(process.cwd(), "public", `${user.avatar}.png`);
-    const buffer = Buffer.from(await avatarRes.arrayBuffer());
-    await writeFile(avatarPath, buffer);
-
-    for (const file of dir) {
-      if (file != `${user.avatar}.png` && file.endsWith(".png")) {
-        await rm(path.join(publicDir, file), { force: true });
-        console.debug(`removed cached avatar public/${file}`);
-      }
-    }
-  }
-
-  return `/${user.avatar}.png`;
-};
 
 export default Home;

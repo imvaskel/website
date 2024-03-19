@@ -1,0 +1,10 @@
+repos:
+-   repo: local
+    hooks:
+      - id: nextjs-build
+        name: nextjs-build
+        types_or: ["css", "ts", "tsx"]
+        # TODO: Localize to also work on windows. likely requires $SHELL -c, but im unsure how powershell handles it
+        entry: bash -c "yarn next build"
+        language: system
+        pass_filenames: false

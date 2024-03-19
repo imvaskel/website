@@ -27,7 +27,23 @@
     }
 
     & a > h1 {
-        color: (--fg);
+      color: (--fg);
+    }
+
+    @media only screen and (max-width: 480px) {
+      flex-direction: column;
+
+      & div {
+        display: none;
+      }
+
+      & h1 {
+        font-size: 7.5em;
+      }
+
+      & a > h1 {
+        font-size: 2.5em;
+      }
     }
   }
 }

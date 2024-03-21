@@ -1,25 +1,16 @@
 /* eslint-disable react/jsx-no-comment-textnodes -- I'm using // for style, not comments. */
 
 import { Link } from "@/components/link";
-import styles from "./styles.module.css";
-import { socials } from "@/lib/socials";
 import { Nav } from "@/components/nav";
-import { readFile } from "fs/promises";
-import path from "path";
-import { type NextPage } from "next";
-import { UserData } from "@/lib/utils";
+import { socials } from "@/lib/socials";
+import { UserData, defaultMetadata } from "@/lib/utils";
+import { type Metadata, type NextPage } from "next";
+import styles from "./styles.module.css";
+import { BASE_URL } from "@/lib/env";
 
 const About: NextPage<{}> = async () => {
-  let extraSocials: Array<UserData> | undefined;
-  try {
-    extraSocials = JSON.parse(
-      await readFile(path.join(process.cwd(), "user.json"), {
-        encoding: "utf-8",
-      })
-    );
-  } catch {
-    extraSocials = undefined;
-  }
+  const res = await fetch(`${BASE_URL}/api/socials`);
+  const extraSocials: Array<UserData> = await res.json();
 
   return (
     <main>
@@ -95,17 +86,14 @@ const About: NextPage<{}> = async () => {
             })}
           </ul>
         </div>
-        <div>
-          <p>
-            And some extras: (these are fetched from discord whenever I feel
-            like it, may also contain some of the above.)
-          </p>
-          <ul>
-            {extraSocials &&
-              extraSocials.map((v) => {
-                if (v.visibility !== 1 || v.type === "domain") {
-                  return null;
-                }
+        {extraSocials.length !== 0 && (
+          <div>
+            <p>
+              And some extras: (these are fetched from discord whenever I feel
+              like it, may also contain some of the above.)
+            </p>
+            <ul>
+              {extraSocials.map((v) => {
                 const social =
                   v.type.charAt(0).toUpperCase() + v.type.substring(1);
 
@@ -116,8 +104,9 @@ const About: NextPage<{}> = async () => {
                   </li>
                 );
               })}
-          </ul>
-        </div>
+            </ul>
+          </div>
+        )}
       </div>
       <Nav />
     </main>
@@ -125,3 +114,10 @@ const About: NextPage<{}> = async () => {
 };
 
 export default About;
+export const generateMetadata = async (): Promise<Metadata> => {
+  let base = await defaultMetadata();
+  base.title = "About";
+  base.description = "About this gay creature.";
+
+  return base;
+};

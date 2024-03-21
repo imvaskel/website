@@ -15,8 +15,8 @@ const Home: NextPage<{}> = () => {
 export default Home;
 export const generateMetadata = async (): Promise<Metadata> => {
   let base = await defaultMetadata();
-  base.title = "Alt";
-  base.description = "Alternative home page."
+  base.title = "Vaskel";
+  base.description = "A gay creature."
 
   return base;
 };

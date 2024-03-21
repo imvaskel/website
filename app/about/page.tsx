@@ -3,15 +3,12 @@
 import { Link } from "@/components/link";
 import { Nav } from "@/components/nav";
 import { socials } from "@/lib/socials";
-import { UserData, defaultMetadata } from "@/lib/utils";
+import { defaultMetadata } from "@/lib/utils";
 import { type Metadata, type NextPage } from "next";
 import styles from "./styles.module.css";
-import { BASE_URL } from "@/lib/env";
+import { ExtraSocials } from "./components";
 
 const About: NextPage<{}> = async () => {
-  const res = await fetch(`${BASE_URL}/api/socials`);
-  const extraSocials: Array<UserData> = await res.json();
-
   return (
     <main>
       <div className={styles.about}>
@@ -86,27 +83,7 @@ const About: NextPage<{}> = async () => {
             })}
           </ul>
         </div>
-        {extraSocials.length !== 0 && (
-          <div>
-            <p>
-              And some extras: (these are fetched from discord whenever I feel
-              like it, may also contain some of the above.)
-            </p>
-            <ul>
-              {extraSocials.map((v) => {
-                const social =
-                  v.type.charAt(0).toUpperCase() + v.type.substring(1);
-
-                return (
-                  <li key={v.type}>
-                    <span data-first={true}>{social}:</span>{" "}
-                    <span data-second={true}>{v.name}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
+        <ExtraSocials />
       </div>
       <Nav />
     </main>

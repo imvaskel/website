@@ -1,5 +1,6 @@
 import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URL } from "@/lib/env";
 import * as fs from "fs/promises";
+import { revalidatePath } from "next/cache";
 import { type NextRequest } from "next/server";
 import path from "path";
 
@@ -48,6 +49,8 @@ export async function GET(req: NextRequest) {
     path.join(process.cwd(), "user.json"),
     new Uint8Array(Buffer.from(JSON.stringify(json)))
   );
+
+  revalidatePath("/about")
 
   return Response.json(json);
 }

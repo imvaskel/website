@@ -2,6 +2,7 @@ import { workSans } from "@/lib/fonts";
 import "@/styles/gruvbox-material.css";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import React from "react";
 
 export default function RootLayout({
   children,

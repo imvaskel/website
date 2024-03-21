@@ -1,22 +1,27 @@
+/* eslint-disable no-unused-vars */
 "use client";
 
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import { PropsWithChildren, RefObject, useRef } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { MouseEventHandler, PropsWithChildren, useRef, useState } from "react";
 import { FiSun } from "react-icons/fi";
 import styles from "./nav.module.css";
-import Link from "next/link";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCross1 } from "react-icons/rx";
+
+const routes: Array<{ href: string; name: string }> = [
+  { href: "/", name: "Home" },
+  { href: "/about", name: "About" },
+] as const;
 
 enum Theme {
   DARK = "dark",
   LIGHT = "light",
-};
+}
 
-const GayButton = ({
-  onClick
-}: {
-  onClick: () => void
-}) => {
+const GayButton = ({ onClick }: { onClick: () => void }) => {
   const gayRef = useRef<HTMLImageElement>(null);
 
   return (
@@ -43,14 +48,22 @@ const GayButton = ({
   );
 };
 
-const LinkItem = ({href, name}: {href: string, name: string}) => {
-  return <Link href={href} aria-label={name}>
-    {name}
-  </Link>
-}
+const LinkItem = ({ href, name }: { href: string; name: string }) => {
+  return (
+    <Link href={href} aria-label={name}>
+      {name}
+    </Link>
+  );
+};
 
 const Nav = ({ children }: PropsWithChildren<{}>) => {
   let { theme, setTheme } = useTheme();
+  const path = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (ev)=> {
+    setIsOpen(!isOpen);
+  }
 
   return (
     <nav className={styles.navbar}>
@@ -62,7 +75,7 @@ const Nav = ({ children }: PropsWithChildren<{}>) => {
         title="Toggle light/dark"
         type="button"
         onClick={() => {
-          setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK)
+          setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
         }}
       >
         <FiSun
@@ -72,11 +85,16 @@ const Nav = ({ children }: PropsWithChildren<{}>) => {
         />
       </button>
       {children}
-      <div className={styles.link_container}>
-        <LinkItem href="/about" name="About"/>
+      <div className={styles.link_container} data-open={isOpen}>
+        <button onClick={handleClick}>
+          {isOpen ? <RxCross1 /> : <GiHamburgerMenu />}
+        </button>
+        {routes.map(({ href, name }) =>
+          path === href ? null : <LinkItem href={href} name={name} key={name} />
+        )}
       </div>
     </nav>
   );
 };
 
-export { Nav, GayButton };
+export { GayButton, Nav };

@@ -1,54 +1,10 @@
 .main {
   height: 100vh;
-}
-
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  height: 100%;
-  flex-direction: row;
-  gap: 7vw;
-  margin-left: 30vw;
-  font-size: 24px;
-}
-
-.avatar {
-  height: 256px;
-  width: 256px;
-  border-radius: 128px;
-}
-
-.header {
-  color: var(--aqua);
-  width: fit-content;
-  font-size: 3em;
-}
-
-.header_wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5em;
-}
-
-.text_container {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-}
-
-.social_link {
-  background-color: var(--dim-aqua);
-  border-radius: 2em;
-  padding: 0.25em 0.75em
-}
-
-.social_link:hover {
-  filter: brightness(85%);
+  overflow: hidden;
 }
 
 .gay {
-  background: linear-gradient(
+  background-image: linear-gradient(
     to right,
     rgb(7, 141, 111),
     rgb(152, 202, 153),
@@ -60,71 +16,224 @@
     rgb(69, 76, 189),
     rgb(63, 26, 121)
   );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   width: fit-content;
 }
 
-.social_icon {
-  width: 64px;
-  height: 64px;
+.enby {
+  background-image: linear-gradient(
+    to right,
+    rgb(253, 219, 0),
+    rgb(238, 212, 143),
+    rgb(255, 255, 255) 30%,
+    rgb(255, 255, 255),
+    rgb(255, 255, 255) 36%,
+    rgb(212, 181, 222),
+    rgb(156, 92, 212),
+    rgb(88, 50, 96),
+    rgb(0, 0, 0)
+  );
 }
 
-.socials_container {
+.slant {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  & {
+    transform: rotate(-10deg);
+  }
+
+  & h1 {
+    line-height: 1em;
+    color: var(--dim-aqua);
+  }
+
+  @media only screen and (max-width: 480px) {
+    align-items: unset;
+    padding-left: 15vw;
+  }
+}
+
+.line {
+  background-color: var(--dim-red);
+  height: 5px;
+  border-radius: 32px;
+}
+
+.intro {
   display: flex;
   flex-direction: row;
-  gap: 2.5vw;
-  padding-top: 5vh;
-}
+  width: 100%;
+  margin-left: 20vw;
+  gap: 1em;
 
-.social_wrapper {
-  display: flex;
-  gap: 5px;
-}
-
-/* Fixes black on the cyan which looks kind of bad on light themes. */
-@media (prefers-color-scheme: light) {
-  .social_link {
-    color: var(--bg0);
+  & h1 {
+    font-size: 5vw;
+    justify-self: left;
+    width: fit-content;
   }
-}
 
-@media (max-width: 1100px) {
-  .main {
-    display: grid;
+  & div {
+    display: flex;
     align-items: center;
+
+    & .line {
+      width: 25vw;
+    }
   }
 
+  @media only screen and (max-width: 480px) {
+    margin-left: 0px;
 
-  .wrapper {
-    padding-top: 5%;
-    margin: auto;
-    flex-direction: column;
-    font-size: 16px;
-    justify-self: center;
-  }
-
-  .text_container {
-    width: 70vw;
-  }
-
-  .header_wrapper {
-    display: unset;
-  }
-
-  .social_link {
-    font-size: 15px;
-  }
-
-  .socials_container {
-    flex-wrap: wrap;
+    & h1 {
+      font-size: 14vw;
+    }
   }
 }
 
-/* This is a fix to a weird issue wherein 800 ~< x ~< 1600 width, the I'm gets newlined instead of staying on the same line*/
-@media (max-width: 1600px) {
-  .header_wrapper {
-    display: unset;
+.name {
+  font-size: 15vw;
+
+  @media only screen and (max-width: 480px) {
+    font-size: 27vw;
+  }
+}
+
+.social {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1vw;
+  padding-left: 30vw;
+
+  & .line {
+    width: 33vw;
+    margin-top: 5px;
+  }
+
+  & ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    justify-content: end;
+    list-style: none;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding-left: 0;
+
+    & .line {
+      width: 50vw;
+    }
+
+    & ul {
+      gap: 1.5vw;
+    }
+  }
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animated.infinite {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.animated.hinge {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+}
+/*the animation definition*/
+@-webkit-keyframes bounceIn {
+  0%,
+  100%,
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes bounceIn {
+  0%,
+  100%,
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    -ms-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    -ms-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    -ms-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    -ms-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    -ms-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+.bounceIn {
+  @media screen and not (prefers-reduced-motion) {
+    -webkit-animation-name: bounceIn;
+    animation-name: bounceIn;
   }
 }

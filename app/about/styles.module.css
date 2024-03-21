@@ -1,0 +1,48 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  margin: 5vh 10vw;
+  gap: 3vh;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+
+    &:not(:last-child):after {
+      content: "";
+      border-bottom: 2px solid var(--red);
+      border-radius: 64px;
+    }
+  }
+
+  & h1 {
+    /*TODO: Make this look more like a comment than a header*/
+    color: var(--dim-aqua);
+    font-weight: normal;
+    font-size: 2.5em;
+
+    @media only screen and (max-width: 480px) {
+      text-wrap: nowrap;
+    }
+  }
+
+  & a {
+    color: var(--red);
+  }
+
+  & ul {
+    list-style-position: inside;
+
+    & li {
+      /* Cursed*/
+      & span[data-first="true"] {
+        color: var(--red);
+      }
+
+      & span[data-second="true"] {
+        color: var(--orange);
+      }
+    }
+  }
+}

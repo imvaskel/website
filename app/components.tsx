@@ -6,14 +6,7 @@ import { FaGithub, FaDiscord, FaTwitter } from "react-icons/fa6";
 import { IoMailOutline } from "react-icons/io5";
 import styles from "./styles.module.css";
 import { indieFlower } from "@/lib/fonts";
-
-const socials = {
-  discord: "https://discord.com/users/447422100798570496",
-  twitter: "https://twitter.com/imvaskel",
-  github: "https://github.com/imvaskel",
-  email: "mailto:contact@vaskel.gay",
-  pronouns: "https://en.pronouns.page/@vaskel",
-};
+import { socials } from "@/lib/socials";
 
 export const PageBody = () => {
   const [isGay, setIsGay] = useState<boolean>(false);

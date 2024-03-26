@@ -3,15 +3,18 @@
 import { UserData } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
+const getSocials = async (): Promise<Array<UserData>> => {
+  const res = await fetch("/api/socials");
+  const json = await res.json();
+  return json;
+};
+
 export const ExtraSocials = () => {
   const [extraSocials, setExtraSocials] = useState<Array<UserData>>([]);
-  console.log(extraSocials)
 
   useEffect(() => {
-    (async () => {
-      const res = await fetch("/api/socials");
-      setExtraSocials(await res.json());
-    })();
+    getSocials()
+      .then((val) => setExtraSocials(val));
   }, []);
 
   if (extraSocials.length === 0) {

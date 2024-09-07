@@ -7,9 +7,14 @@ const nextConfig = {
         source: "/github/:out",
         destination: "https://github.com/imvaskel/:out",
         permanent: true,
-      }
-    ]
-  }
-}
+      },
+      {
+        source: "/github",
+        destination: "https://github.com/imvaskel",
+        permanent: true,
+      },
+    ];
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

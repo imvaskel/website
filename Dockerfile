@@ -24,6 +24,7 @@ FROM node:lts-alpine AS runner
 
 WORKDIR /opt/app
 ENV NODE_ENV=production
+EXPOSE 3000
 COPY --from=builder /opt/app/next.config.js ./
 COPY --from=builder /opt/app/public ./public
 COPY --from=builder /opt/app/.next ./.next

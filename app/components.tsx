@@ -19,7 +19,7 @@ export const PageBody = () => {
             Hey, I'm
           </h1>
           <div>
-            <div className={`${styles.line} ${isGay ? styles.gay : ""}`}></div>
+            <div className={`${styles.line} ${isGay ? styles.enby : ""}`}></div>
           </div>
         </div>
         <h1 className={`${styles.name} ${indieFlower.className}`}>Vaskel.</h1>
